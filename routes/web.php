@@ -17,6 +17,20 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/home', function(){
+    return "String 1";
+});
+
+Route::get('/home/home2', function(){
+    return "String 2";
+});
+
+Route::redirect('/home', '/home/home2', 301);
+
+Route::get('/users/{id}', function($id){
+    return "User page ".$id;
+});
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
