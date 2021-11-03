@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 
+
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -13,10 +14,17 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
-        $this->call(UserTableSeeder::class);
+        //predefined, for testing
+        $this->call(UserTableSeeder::class); 
         $this->call(PostTableSeeder::class);
         $this->call(CommentTableSeeder::class);
+        
+        //factory relationships
+        \App\Models\User::factory(3)
+        ->has(\App\Models\Post::factory()->count(2)
+        ->has(\App\Models\Comment::factory()->count(1)))
+        ->create();
+
 
     }
 }
