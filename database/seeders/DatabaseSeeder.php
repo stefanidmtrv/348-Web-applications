@@ -15,9 +15,11 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         //predefined, for testing
-        $this->call(UserTableSeeder::class); 
+        $this->call(UserTableSeeder::class);
+        $this->call(CategoryTableSeeder::class);
         $this->call(PostTableSeeder::class);
         $this->call(CommentTableSeeder::class);
+       
         
         //factory relationships
         \App\Models\User::factory(3)

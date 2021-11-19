@@ -22,7 +22,8 @@ class PostFactory extends Factory
     public function definition()
     {
         return [
-            'user_id' => $this->faker->numberBetween($min = 1, $max = 11),
+            'user_id' => $this->faker->randomDigit(),
+            'category_id' => $this->faker->randomDigit(),
             'title' => $this->faker->sentence(),
             'body' => $this->faker->paragraph()
         ];
