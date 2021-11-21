@@ -19,6 +19,6 @@ class CategoryTableSeeder extends Seeder
         $c1->name = "News";
         $c1->save();
 
-        $categories = Category::factory()->count(20)->create();
+        $categories = Category::factory()->count(10)->create();
     }
 }

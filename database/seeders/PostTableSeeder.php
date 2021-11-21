@@ -20,5 +20,9 @@ class PostTableSeeder extends Seeder
         $p1->title = "Post 1";
         $p1->body = "Post 1 body.";
         $p1->save();
+        
+        $posts = Post::factory()->count(12)->create();
         }
+
+        
 }

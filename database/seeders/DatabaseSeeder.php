@@ -15,17 +15,19 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         //predefined, for testing
+        $this->call(ProfileTableSeeder::class);
         $this->call(UserTableSeeder::class);
+        
         $this->call(CategoryTableSeeder::class);
         $this->call(PostTableSeeder::class);
         $this->call(CommentTableSeeder::class);
        
         
-        //factory relationships
-        \App\Models\User::factory(3)
-        ->has(\App\Models\Post::factory()->count(2)
-        ->has(\App\Models\Comment::factory()->count(1)))
-        ->create();
+        /* //factory relationships
+         \App\Models\User::factory(3)
+         ->has(\App\Models\Post::factory()->count(2)
+         ->has(\App\Models\Comment::factory()->count(1)))
+         ->create();*/
 
 
     }
