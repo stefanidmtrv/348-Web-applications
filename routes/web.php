@@ -14,22 +14,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [PostController::class, 'index']);
-Route::get('/posts/{id}', [PostController::class, 'show']);
+Route::get('/', [PostController::class, 'index'])->name('posts.index');
+Route::get('/posts/create', [PostController::class, 'create'])->name('posts.create');
+Route::post('/posts', [PostController::class, 'store'])->name('posts.store');
+Route::get('/posts/{id}', [PostController::class, 'show'])->name('posts.show');
 
-Route::get('/home', function(){
-    return "String 1";
-});
 
-Route::get('/home/home2', function(){
-    return "String 2";
-});
 
-Route::redirect('/home', '/home/home2', 301);
-
-Route::get('/users/{id}', function($id){
-    return "User page ".$id;
-});
 
 Route::get('/dashboard', function () {
     return view('dashboard');

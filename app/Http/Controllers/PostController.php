@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Post;
+use Illuminate\Contracts\Support\ValidatedData;
+use Illuminate\Validation\Rule;
+
 
 class PostController extends Controller
 {
@@ -25,7 +28,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        return view('posts.create');
     }
 
     /**
@@ -36,7 +39,25 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //dd($request['title']);
+
+        $validatedData = $request->validate([
+            'user_id' => 'required|integer',
+            'category_id' => 'required|integer',
+            'title' => 'required|max:255',
+            'body' => 'required|max:255',
+        ]);
+
+        $p1 = new Post;
+        $p1->user_id = $validatedData['user_id'];
+        $p1->category_id = $validatedData['category_id'] ;
+        $p1->title = $validatedData['title'];
+        $p1->body = $validatedData['body'];
+        $p1->save();
+
+        session()->flash('message', 'Post was created.');
+
+        return redirect()->route('posts.index');
     }
 
     /**
@@ -48,6 +69,8 @@ class PostController extends Controller
     public function show($id)
     {
         $post = Post::findOrFail($id);
+        //dd($post);
+        //dump($post);
         return view('posts.show', ['post' => $post]);
     }
 
