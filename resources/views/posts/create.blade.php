@@ -1,4 +1,5 @@
-@extends('layouts.app')
+<x-layouts.app>
+
 
 @section('title', 'Create Post')
 
@@ -20,3 +21,4 @@
     </form>
     
 @endsection
+</x-layouts.app>
