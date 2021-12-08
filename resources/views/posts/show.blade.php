@@ -15,7 +15,9 @@
 <p>Comments: </p>
 <ol>
 @foreach ($post->comments as $comment)
-<li>{{$comment->text}}</li>
+
+    <li>{{$comment->user->name}} : {{$comment->text}}</li>
+    
     
 @endforeach
 </ol>
