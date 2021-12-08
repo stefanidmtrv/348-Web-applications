@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Post;
+use App\Services\Instagram;
 use Illuminate\Contracts\Support\ValidatedData;
 use Illuminate\Validation\Rule;
 
@@ -15,6 +16,13 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+     public function example(Post $foo, Instagram $t){
+         //dependency injection
+        dd($t);
+
+     }
+
     public function index()
     {
         $posts = Post::all();
