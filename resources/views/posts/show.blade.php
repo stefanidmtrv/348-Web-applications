@@ -1,7 +1,7 @@
 <x-layouts.app>
 
-
     <x-slot name="title">
+        {{$post->title}}
     </x-slot>
 
     <x-slot name="slot">
@@ -11,5 +11,13 @@
     <li>body: {{$post->body}}</li>
 
 </ul>
+
+<p>Comments: </p>
+<ol>
+@foreach ($post->comments as $comment)
+<li>{{$comment->text}}</li>
+    
+@endforeach
+</ol>
 </x-slot name="slot">
 </x-layouts.app>
