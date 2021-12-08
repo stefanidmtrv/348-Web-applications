@@ -1,10 +1,10 @@
-@extends('layouts.app')
+<x-layouts.app>
 
-@section('title')
+    <x-slot name="title">
     Posts
-@endsection
+    </x-slot>
 
-@section('content')
+    <x-slot name="slot">
     <p>The posts of my blog: </p>    
 
     <ul>
@@ -14,7 +14,7 @@
     </ul>
 
     <a href="{{route('posts.create')}}">Create Post</a>
+    </x-slot>
+</x-layouts.app>
 
-
-@endsection
 
