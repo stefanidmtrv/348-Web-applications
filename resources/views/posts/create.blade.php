@@ -1,9 +1,11 @@
 <x-layouts.app>
 
 
-@section('title', 'Create Post')
+    <x-slot name="title">
+        Create post
+    </x-slot>
 
-@section('content')
+    <x-slot name="slot">
 
     <form method='POST' action="{{route('posts.store')}}">
         @csrf
@@ -20,5 +22,5 @@
         <a href="{{route('posts.index')}}">Cancel</a>
     </form>
     
-@endsection
+    </x-slot>
 </x-layouts.app>

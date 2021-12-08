@@ -6,8 +6,8 @@
 
     <x-slot name="slot">
     <ul>
-    <li>user id: {{$post->user_id}}</li>
-    <li>category id: {{$post->category_id}}</li>
+    <li>Posted by {{$post->user->name}}</li>
+    <li>Category: {{$post->category->name}}</li>
     <li>body: {{$post->body}}</li>
 
 </ul>
@@ -19,5 +19,5 @@
     
 @endforeach
 </ol>
-</x-slot name="slot">
+</x-slot>
 </x-layouts.app>

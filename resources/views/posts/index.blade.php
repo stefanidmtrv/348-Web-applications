@@ -5,7 +5,7 @@
     </x-slot>
 
     <x-slot name="slot">
-    <p>The posts of my blog: </p>    
+   
 
     <ul>
         @foreach ($posts as $post)
