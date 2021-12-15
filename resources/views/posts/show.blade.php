@@ -17,7 +17,13 @@
 @foreach ($post->comments as $comment)
 
     <li>{{$comment->user->name}} : {{$comment->text}}</li>
-    
+
+    <form method='POST' action="{{route('comments.destroy', ['comment' => $comment])}}">
+        @csrf
+        
+        @method('DELETE')
+        <button type="submit">Delete comment</button>
+    </form>
     
 @endforeach
 </ol>
@@ -30,10 +36,20 @@
     
     <p>Content: <input type="text" name="text"
         value= "{{old('text')}}"></p>
-<input type="hidden" name="post_id" value="{{ $post->id }}" />
+    <input type="hidden" name="post_id" value="{{ $post->id }}" />
     <input type="submit" value="Submit">
     <a href="{{route('posts.index')}}">Cancel</a>
 </form>
+
+
+<form method='POST' action="{{route('posts.destroy', ['post' => $post])}}">
+    @csrf
+    
+    @method('DELETE')
+    <button type="submit">Delete post</button>
+</form>
+
+<p><a href="{{route('posts.index')}}">Go Back</a></p>
 
 </x-slot>
 </x-layouts.app>

@@ -28,9 +28,10 @@ Route::get('/posts', [PostController::class, 'index'])->name('posts.index')->mid
 Route::get('/posts/create', [PostController::class, 'create'])->name('posts.create')->middleware('auth');
 Route::get('/posts/{post}', [PostController::class, 'show'])->name('posts.show')->middleware('auth');
 Route::post('/posts', [PostController::class, 'store'])->name('posts.store')->middleware('auth');
-
+Route::delete('posts/{post}', [PostController::class, 'destroy'])->name('posts.destroy')->middleware('auth');
 //comments
 Route::post('/posts/comments', [CommentController::class, 'store'])->name('comments.store')->middleware('auth');
+Route::delete('/posts/comments/{comment}', [CommentController::class, 'destroy'])->name('comments.destroy')->middleware('auth');
 
 
 Route::get('/dashboard', function () {

@@ -50,6 +50,8 @@ class CommentController extends Controller
         $comment->post_id = $validatedData['post_id'];
         $comment->save();
 
+        session()->flash('message', 'Comment was created.');
+
         return back();
     }
 
@@ -93,8 +95,10 @@ class CommentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Comment $comment)
     {
-        //
+        $comment->delete();
+
+        return back()->with('message', 'Comment was deleted.');
     }
 }
