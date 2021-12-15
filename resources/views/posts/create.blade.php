@@ -9,8 +9,7 @@
 
     <form method='POST' action="{{route('posts.store')}}">
         @csrf
-        <p>User id: <input type="text" name="user_id"
-            value= "{{old('user')}}"></p>
+        
         <p>Category id: <input type="text" name="category_id"
             value= "{{old('category')}}"></p>
         <p>Title: <input type="text" name="title"

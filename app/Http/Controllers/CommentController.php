@@ -1,34 +1,23 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use Illuminate\Http\Request;
 use App\Models\Post;
-use App\Services\Instagram;
+use App\Models\Comment;
 use Illuminate\Support\Facades\Auth;
 
-use Illuminate\Contracts\Support\ValidatedData;
-use Illuminate\Validation\Rule;
 
+use Illuminate\Http\Request;
 
-class PostController extends Controller
+class CommentController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-
-     public function example(Post $foo, Instagram $t){
-         //dependency injection
-        dd($t);
-
-     }
-
     public function index()
     {
-        $posts = Post::all();
-        return view('posts.index', ['posts' => $posts]);
+        //
     }
 
     /**
@@ -38,7 +27,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('posts.create');
+
     }
 
     /**
@@ -49,25 +38,19 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //dd($request['title']);
-
-        $validatedData = $request->validate([
-            
-            'category_id' => 'required|integer',
-            'title' => 'required|max:255',
-            'body' => 'required|max:255',
+        
+        $validatedData = request()->validate([
+            'text' => 'required|max:1000',
+            'post_id' => 'required'
         ]);
+        
+        $comment = new Comment;
+        $comment->text = $validatedData['text'];
+        $comment->user_id = Auth::id();
+        $comment->post_id = $validatedData['post_id'];
+        $comment->save();
 
-        $p1 = new Post;
-        $p1->user_id = Auth::id();
-        $p1->category_id = $validatedData['category_id'] ;
-        $p1->title = $validatedData['title'];
-        $p1->body = $validatedData['body'];
-        $p1->save();
-
-        session()->flash('message', 'Post was created.');
-
-        return redirect()->route('posts.index');
+        return back();
     }
 
     /**
@@ -76,12 +59,9 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Post $post)
+    public function show($id)
     {
-        //$post = Post::findOrFail($id);
-        //dd($post);
-        //dump($post);
-        return view('posts.show', ['post' => $post]);
+        
     }
 
     /**

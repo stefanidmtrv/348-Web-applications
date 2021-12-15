@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\CommentController;
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,13 +21,16 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/example', [PostController::class, 'example']);
+Route::get('/example', [PostController::class, 'example']);//service container
 
+//posts
 Route::get('/posts', [PostController::class, 'index'])->name('posts.index')->middleware('auth');
 Route::get('/posts/create', [PostController::class, 'create'])->name('posts.create')->middleware('auth');
 Route::get('/posts/{post}', [PostController::class, 'show'])->name('posts.show')->middleware('auth');
 Route::post('/posts', [PostController::class, 'store'])->name('posts.store')->middleware('auth');
 
+//comments
+Route::post('/posts/comments', [CommentController::class, 'store'])->name('comments.store')->middleware('auth');
 
 
 Route::get('/dashboard', function () {
