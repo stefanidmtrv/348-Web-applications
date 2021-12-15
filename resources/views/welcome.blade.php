@@ -7,13 +7,32 @@
 
     <x-slot name="slot">
         
-        
-          <div class="has-bg-img">
+      @auth
+      <div><p class="fs-1">Hello again! Discover all of the
+           <a href="{{route('posts.index')}}"> posts</a></p>
+        </div>
+          
+      @endauth
+
+        @guest
+        <div><p class="fs-1">Hello again!
+           Register or log in to discover posts.
+           </p>
+           
+           <a class="btn btn-primary btn-lg" href="{{route('register')}}" role="button">
+            Register
+           </a>
+
+           <a class="btn btn-primary btn-lg" href="{{route('login')}}" role="button">
+            Log In
+           </a>
             
-            <img class="bg-img" src="/images/particle_background.jpg" alt="sfd"><h2>Hero Section</h2>
-            <h4>It's easy to set background image with Torus Kit</h4>
-          </div>
-       
+
+        </div>
+        @endguest
+          
+        
+
     </x-slot>
 
     
