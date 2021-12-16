@@ -20,6 +20,25 @@ class CommentController extends Controller
         //
     }
 
+    public function apiIndex(){
+        $comments = Comment::all();
+        return $comments;
+    }
+
+    public function apiStore(Request $request){
+
+        // validation!
+    
+        $comment = new Comment();
+        $comment->text = $request['text'];
+        $comment->user_id = Auth::id();
+        $comment->post_id = 1;
+        $comment->save();
+
+        
+        return $comment;
+    }
+
     /**
      * Show the form for creating a new resource.
      *

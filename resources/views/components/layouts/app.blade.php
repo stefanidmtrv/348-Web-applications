@@ -6,7 +6,10 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
-   
+    <script src="https:cdnjs.cloudflare.com/ajax/libs/axios/0.21.0/axios.min.js" 
+    integrity="sha512-DZqqY3PiOvTP9HkjIWgjO6ouCbq+dxqWoJZ/Q+zPYNHmlnI2dQnbJ5bxAHpAMw+LXRm4D72EIRXzvcHQtE8/VQ=="
+    crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
         <title>Blog</title>

@@ -28,6 +28,8 @@
 @endforeach
 </ol>
 
+
+
 <p>Create comment: </p>
 
 <form method='POST' action="{{route('comments.store')}}">
@@ -50,5 +52,53 @@
 
 <p><a href="{{route('posts.index')}}">Go Back</a></p>
 
+AJAX
+<div id="root">
+    <ul>
+        <li v-for="comment in comments"> @{{comment.text}}</li>
+    </ul>
+
+    <h1>New comment</h1>
+    Comment text: <input type="text" id="input" v-model="newCommentName">
+    <button @click="createComment">Create</button>
+</div>
+
+
+
 </x-slot>
 </x-layouts.app>
+
+<script>
+    var app = new Vue({
+        el: "#root",
+        data: {
+            comments: [],
+            newCommentName: '',
+        },
+        methods: {
+        createComment: function(){
+        axios.post("{{route('api.comments.store')}}",
+        {
+            text: this.newCommentName
+        })
+        .then(response=>{
+            
+        this.comments.push(response.data);
+            this.newCommentName='';
+        })
+        .catch(response=>{
+            console.log(response);
+        })
+    }
+        },
+        mounted(){
+            axios.get("{{route ('api.comments.index')}}")
+            .then(response => {
+                this.comments = response.data;
+            })
+            .catch(response => {
+                concole.log(response);
+            })
+        }
+    });
+</script>
