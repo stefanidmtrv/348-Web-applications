@@ -33,7 +33,6 @@
 <form method='POST' action="{{route('comments.store')}}">
     @csrf
     
-    
     <p>Content: <input type="text" name="text"
         value= "{{old('text')}}"></p>
     <input type="hidden" name="post_id" value="{{ $post->id }}" />
