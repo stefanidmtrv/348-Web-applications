@@ -13,9 +13,14 @@
         @endforeach
     </ul>
 
+   
+    
     <a href="{{route('posts.create')}}">Create Post</a>
 
     <p><a href="{{route('home')}}">Go Back</a></p>
+    
+    <div>{{ $posts->links() }}</div>
+    
     </x-slot>
 </x-layouts.app>
 
