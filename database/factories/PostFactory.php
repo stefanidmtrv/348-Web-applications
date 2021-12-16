@@ -25,6 +25,7 @@ class PostFactory extends Factory
             'user_id' => $this->faker->randomDigitNotNull(),
             'category_id' => $this->faker->randomDigitNotNull(),
             'title' => $this->faker->sentence(),
+            'extract' => $this->faker->paragraph(),
             'body' => $this->faker->paragraph()
         ];
     }

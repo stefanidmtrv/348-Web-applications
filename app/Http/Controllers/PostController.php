@@ -6,10 +6,12 @@ use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Services\Instagram;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Pagination\Paginator;
 
 use Illuminate\Contracts\Support\ValidatedData;
 use Illuminate\Validation\Rule;
 
+Paginator::useBootstrap();
 
 class PostController extends Controller
 {
@@ -55,6 +57,7 @@ class PostController extends Controller
         $validatedData = $request->validate([
             
             'category_id' => 'required|integer',
+            'extract' => 'required|max:500',
             'title' => 'required|max:255',
             'body' => 'required|max:255',
         ]);
@@ -62,6 +65,7 @@ class PostController extends Controller
         $p1 = new Post;
         $p1->user_id = Auth::id();
         $p1->category_id = $validatedData['category_id'] ;
+        $p1->extract= $validatedData['extract'] ;
         $p1->title = $validatedData['title'];
         $p1->body = $validatedData['body'];
         $p1->save();

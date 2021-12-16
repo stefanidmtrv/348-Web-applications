@@ -5,53 +5,58 @@
     </x-slot>
 
     <x-slot name="slot">
-    <ul>
-    <li>Posted by {{$post->user->name}}</li>
-    <li>Category: {{$post->category->name}}</li>
-    <li>body: {{$post->body}}</li>
+    
+    <div class="container my-3">
+    <strong>Category:</strong> {{$post->category->name}}
 
-</ul>
+    <p> {{$post->body}}</p>
 
-<p>Comments: </p>
+
+
+<strong>Comments: </strong>
 <ol>
 @foreach ($post->comments as $comment)
-
-    <li>{{$comment->user->name}} : {{$comment->text}}</li>
+<figure>
+    <blockquote class="blockquote">
+      <p><li> {{$comment->text}}</li></p>
+    </blockquote>
+    <figcaption class="blockquote-footer">
+      Posted by: <cite title="Source Title">{{$comment->user->name}}</cite>
+    </figcaption>
+  </figure>
+    
 
     <form method='POST' action="{{route('comments.destroy', ['comment' => $comment])}}">
         @csrf
         
         @method('DELETE')
-        <button type="submit">Delete comment</button>
+        <button type="submit" class="btn btn-outline-danger">Delete comment</button>
     </form>
     
 @endforeach
 </ol>
-
-
-
-<p>Create comment: </p>
-
+<div>
 <form method='POST' action="{{route('comments.store')}}">
     @csrf
     
-    <p>Content: <input type="text" name="text"
+    <p>Add comment: <input type="text" name="text"
         value= "{{old('text')}}"></p>
     <input type="hidden" name="post_id" value="{{ $post->id }}" />
     <input type="submit" value="Submit">
-    <a href="{{route('posts.index')}}">Cancel</a>
+    
 </form>
-
 
 <form method='POST' action="{{route('posts.destroy', ['post' => $post])}}">
     @csrf
     
     @method('DELETE')
-    <button type="submit">Delete post</button>
+    <button type="submit" class="btn btn-danger">Delete post</button>
 </form>
+
 
 <p><a href="{{route('posts.index')}}">Go Back</a></p>
 
+</div>
 AJAX
 <div id="root">
     <ul>
@@ -62,6 +67,8 @@ AJAX
     Comment text: <input type="text" id="input" v-model="newCommentName">
     <button @click="createComment">Create</button>
 </div>
+
+
 
 
 
