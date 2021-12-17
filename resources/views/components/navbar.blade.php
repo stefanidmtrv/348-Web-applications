@@ -10,6 +10,12 @@
           <a class="nav-link active" aria-current="page" href="{{route('home')}}">Home</a>
         </li>
 
+        @auth
+        <li class="nav-item">
+          <a class="nav-link active" href="{{route('posts.create')}}">Create Post</a>
+        </li>
+        @endauth
+
         @guest
             <li class="nav-item">
               <a class="nav-link" href="{{route('login')}}">Login</a>
@@ -25,7 +31,7 @@
             
         @endguest
 
-
+ 
         @auth
         @role('admin')
           <li class="nav-item">
@@ -33,14 +39,15 @@
           
           </li>
             @endrole
+            
             <form method="POST" action="{{ route('logout') }}">
               @csrf
-          <li class="nav-item">
+              
+            <li class="nav-item">
               <a class="nav-link" href="{{route('logout')}}" onclick="event.preventDefault();
               this.closest('form').submit();">Logout</a>
             </li>
-            
-          
+     
       </form>
         @endauth
 
