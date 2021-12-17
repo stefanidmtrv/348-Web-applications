@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Post;
+use App\Models\User;
 use App\Services\Instagram;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Pagination\Paginator;
@@ -53,7 +54,7 @@ class PostController extends Controller
     public function store(Request $request)
     {
         //dd($request['title']);
-
+      
         $validatedData = $request->validate([
             
             'category_id' => 'required|integer',

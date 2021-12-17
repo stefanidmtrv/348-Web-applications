@@ -25,14 +25,19 @@
     </figcaption>
   </figure>
     
-
+  
+ 
     <form method='POST' action="{{route('comments.destroy', ['comment' => $comment])}}">
         @csrf
         
         @method('DELETE')
-        <button type="submit" class="btn btn-outline-danger">Delete comment</button>
+        <button type="submit" class="btn btn-outline-danger">Delete comment</button> 
+        
     </form>
+
     
+  
+
 @endforeach
 </ol>
 <div>
@@ -46,13 +51,16 @@
     
 </form>
 
+@role('admin')
 <form method='POST' action="{{route('posts.destroy', ['post' => $post])}}">
     @csrf
     
     @method('DELETE')
     <button type="submit" class="btn btn-danger">Delete post</button>
-</form>
-
+</form>   
+@else
+     
+@endrole
 
 <p><a href="{{route('posts.index')}}">Go Back</a></p>
 

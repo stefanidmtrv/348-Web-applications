@@ -57,6 +57,8 @@ class RegisteredUserController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
+        $user->givePermissionTo('delete posts');
+        
         event(new Registered($user));
 
         Auth::login($user);

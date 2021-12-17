@@ -27,15 +27,24 @@
 
 
         @auth
+        @role('admin')
+          <li class="nav-item">
+            <a class="nav-link" href="#">Admin</a>
+          
+          </li>
+            @endrole
             <form method="POST" action="{{ route('logout') }}">
               @csrf
           <li class="nav-item">
               <a class="nav-link" href="{{route('logout')}}" onclick="event.preventDefault();
               this.closest('form').submit();">Logout</a>
             </li>
+            
           
       </form>
         @endauth
+
+        
 
         
     </div>
