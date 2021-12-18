@@ -97,9 +97,10 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Post $post)
     {
-        //
+        $categories = Category::orderBy('name', 'asc')->get();
+        return view('posts.edit', ['post' => $post, 'categories' => $categories]);
     }
 
     /**
@@ -109,9 +110,17 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Post $post)
     {
-        //
+        
+        $post->update([
+            'category_id' => $request->category_id,
+            'extract' => $request->extract,
+            'title' => $request->title,
+            'body' => $request->body
+        ]);
+
+        return redirect()->route('posts.index')->with('message', 'Post has been updated');
     }
 
     /**
