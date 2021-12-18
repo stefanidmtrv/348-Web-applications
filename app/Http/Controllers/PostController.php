@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\User;
@@ -41,8 +42,8 @@ class PostController extends Controller
      */
     public function create()
     {
-
-        return view('posts.create');
+        $categories = Category::orderBy('name', 'asc')->get();
+        return view('posts.create', ['categories'=>$categories]);
     }
 
     /**
@@ -60,7 +61,7 @@ class PostController extends Controller
             'category_id' => 'required|integer',
             'extract' => 'required|max:500',
             'title' => 'required|max:255',
-            'body' => 'required|max:255',
+            'body' => 'required|max:1000',
         ]);
 
         $p1 = new Post;

@@ -8,11 +8,14 @@
 
         <div class="container my-3">
             <strong>Category:</strong> {{ $post->category->name }}
+            <div class="card">
+                <div class="card-body">
+      {{ $post->body }}   
+                </div>
+            </div>
 
-            <p> {{ $post->body }}</p>
 
-
-
+            <p>
             <strong>Comments: </strong>
             <ol>
                 @foreach ($post->comments as $comment)
@@ -27,13 +30,13 @@
                         </figcaption>
                     </figure>
 
-
+</p>
 
                     <form method='POST' action="{{ route('comments.destroy', ['comment' => $comment]) }}">
                         @csrf
 
                         @method('DELETE')
-                        <button type="submit" class="btn btn-outline-danger">Delete comment</button>
+                        <button type="submit" class="btn btn-outline-danger btn-sm">Delete comment</button>
 
                     </form>
 
@@ -42,16 +45,19 @@
 
                 @endforeach
             </ol>
-            <div>
+            
+            <div class="d-grid gap-2">
+                <div class="form-group mb-4">
                 <form method='POST' action="{{ route('comments.store') }}">
                     @csrf
-
-                    <p>Add comment: <input type="text" name="text" value="{{ old('text') }}"></p>
+                    
+                    <strong><p>Add comment: </p></strong>
+                    <textarea type="text" name="text"  value="{{ old('text')}}" class="form-control"></textarea>
                     <input type="hidden" name="post_id" value="{{ $post->id }}" />
-                    <input type="submit" value="Submit">
-
+                    <button type="submit" class="btn btn-outline-success btn-sm" value="Submit">Submit comment</button>
+                   
                 </form>
-
+                 </div>
                 @role('admin')
                     <form method='POST' action="{{ route('posts.destroy', ['post' => $post]) }}">
                         @csrf
@@ -60,13 +66,12 @@
                         <button type="submit" class="btn btn-danger">Delete post</button>
                     </form>
                 @else
-
                 @endrole
 
                 <p><a href="{{ route('posts.index') }}">Go Back</a></p>
 
             </div>
-            AJAX
+            {{-- AJAX
             <div id="root">
                 <ul>
                     <li v-for="comment in comments"> @{{ comment . text }}</li>
@@ -75,11 +80,7 @@
                 <h1>New comment</h1>
                 Comment text: <input type="text" id="input" v-model="newCommentName">
                 <button @click="createComment">Create</button>
-            </div>
-
-
-
-
+            </div> --}}
 
     </x-slot>
 </x-layouts.app>
