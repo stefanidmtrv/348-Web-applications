@@ -34,6 +34,11 @@
                     </p>
 
                     @if ((auth()->user()->hasRole('admin')) || (!(auth()->user()->hasRole('admin'))&& Auth::id() == $comment->user_id)) 
+                        <form method="PATCH" action="{{ route('comments.edit', ['comment' => $comment]) }}">
+                            @csrf
+                            @method('Patch')
+                            <button type="submit" class="btn btn-outline-info btn-sm">Edit Comment</button>
+                        </form>
                         <form method='POST' action="{{ route('comments.destroy', ['comment' => $comment]) }}">
                             @csrf
 
@@ -41,6 +46,8 @@
                             <button type="submit" class="btn btn-outline-danger btn-sm">Delete comment</button>
 
                         </form>
+                        
+
                     @else
                     @endif
                 @endforeach

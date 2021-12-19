@@ -120,7 +120,7 @@ class PostController extends Controller
             'body' => $request->body
         ]);
 
-        return redirect()->route('posts.index')->with('message', 'Post has been updated');
+        return redirect()->route('posts.show', ['post' => $post])->with('message', 'Post has been updated');
     }
 
     /**

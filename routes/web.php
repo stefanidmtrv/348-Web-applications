@@ -37,6 +37,8 @@ Route::put('/posts/{post}', [PostController::class, 'update'])->name('posts.upda
 //comments
 Route::post('/posts/comments', [CommentController::class, 'store'])->name('comments.store')->middleware('auth');
 Route::delete('/posts/comments/{comment}', [CommentController::class, 'destroy'])->name('comments.destroy')->middleware('auth');
+Route::get('/posts/comments/{comment}/edit', [CommentController::class, 'edit'])->name('comments.edit');
+Route::put('/posts/comments/{comment}', [CommentController::class, 'update'])->name('comments.update');
 
 
 Route::get('/dashboard', function () {
