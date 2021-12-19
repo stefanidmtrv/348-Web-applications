@@ -6,11 +6,15 @@
 
     <x-slot name="slot">
 
-        <div class="container my-3">
+        <div class="container my-3"> 
+            <a class="btn btn-outline-secondary" href="{{ route('posts.index') }}">Go Back</a> 
+            <br>
             <strong>Category:</strong> {{ $post->category->name }}
+            <hr>
+           
 
 
-            <p><strong>Body: </strong>{{ $post->body }}</p>
+            <p class="fs-2"><strong> {{$post->body}} </strong></p>
 
             <p>
                 <strong>Comments: </strong>
@@ -29,17 +33,16 @@
 
                     </p>
 
-                    <form method='POST' action="{{ route('comments.destroy', ['comment' => $comment]) }}">
-                        @csrf
+                    @if ((auth()->user()->hasRole('admin')) || (!(auth()->user()->hasRole('admin'))&& Auth::id() == $comment->user_id)) 
+                        <form method='POST' action="{{ route('comments.destroy', ['comment' => $comment]) }}">
+                            @csrf
 
-                        @method('DELETE')
-                        <button type="submit" class="btn btn-outline-danger btn-sm">Delete comment</button>
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-outline-danger btn-sm">Delete comment</button>
 
-                    </form>
-
-
-
-
+                        </form>
+                    @else
+                    @endif
                 @endforeach
             </ol>
 
@@ -59,24 +62,24 @@
                     </form>
                 </div>
 
+                @if ((auth()->user()->hasRole('admin')) || (!(auth()->user()->hasRole('admin'))&& Auth::id() == $post->user_id))
                 <form method="PATCH" action="{{ route('posts.edit', ['post' => $post]) }}">
                     @csrf
                     @method('Patch')
                     <button type="submit" class="btn btn-info">Edit Post</button>
                 </form>
-                @role('admin')
-                    <form method='POST' action="{{ route('posts.destroy', ['post' => $post]) }}">
-                        @csrf
+                <form method='POST' action="{{ route('posts.destroy', ['post' => $post]) }}">
+                    @csrf
 
-                        @method('DELETE')
-                        <button type="submit" class="btn btn-danger">Delete Post</button>
-                    </form>
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-danger">Delete Post</button>
+                </form>
                 @else
-                @endrole
+                @endif
 
 
 
-                <p><a href="{{ route('posts.index') }}">Go Back</a></p>
+               
 
             </div>
             {{-- AJAX
