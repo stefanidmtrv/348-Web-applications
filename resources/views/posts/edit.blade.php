@@ -9,7 +9,7 @@
         <div class="card">
             
             <div class="card-body">
-                <form method='POST' action="{{ route('posts.update', [$post]) }}">
+                <form method='POST' action="{{ route('posts.update', [$post]) }}" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
                     <div class="form-group mb-4">
@@ -26,6 +26,10 @@
 
                         @endforeach
                     </select>
+
+                    <strong>Post Image:</strong>
+                 <input type="file" name="image" class="form-control" placeholder="Post Title">
+              <img src="{{ Storage::url($post->image) }}" height="200" width="200" alt="" />
 
                     <div class="form-group mb-4">
                         <p>Extract: </p>

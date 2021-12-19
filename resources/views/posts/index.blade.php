@@ -19,8 +19,8 @@
                         <div class="row">
                             <div class="col-xs-12 col-sm-5 col-md-5 col-lg-4">
                                 <div class="post-type post-img">
-                                    <img src="https://bootdey.com/img/Content/avatar/avatar1.png" class="img-fluid"
-                                        alt="image post">
+                                    <img src="{{ Storage::url($post->image) }}" class="img-fluid" alt="" />
+
                                 </div>
                                 <div class="author-info author-info-2">
                                     <ul class="list-inline">

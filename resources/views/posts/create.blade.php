@@ -9,8 +9,12 @@
         <div class="card">
             
             <div class="card-body">
-                <form method='POST' action="{{ route('posts.store') }}">
+                <form method='POST' action="{{ route('posts.store') }}" enctype="multipart/form-data">
                     @csrf
+                    <div class="form-group">
+                        <strong>Post Image:</strong>
+                         <input type="file" name="image" class="form-control" placeholder="Post Title">
+                    </div>
                     <div class="form-group mb-4">
                         <p>Title: </p>
                         <input type="text" name="title" value="{{ old('title') }}" class="form-control"></p>

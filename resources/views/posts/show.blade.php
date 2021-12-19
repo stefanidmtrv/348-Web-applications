@@ -11,8 +11,8 @@
             <br>
             <strong>Category:</strong> {{ $post->category->name }}
             <hr>
-           
 
+            <img src="{{ Storage::url($post->image) }}" class="img-thumbnail" alt="" />
 
             <p class="fs-2"><strong> {{$post->body}} </strong></p>
 
@@ -68,7 +68,7 @@
 
                     </form>
                 </div>
-
+                
                 @if ((auth()->user()->hasRole('admin')) || (!(auth()->user()->hasRole('admin'))&& Auth::id() == $post->user_id))
                 <form method="PATCH" action="{{ route('posts.edit', ['post' => $post]) }}">
                     @csrf

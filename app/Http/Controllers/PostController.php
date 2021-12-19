@@ -57,25 +57,32 @@ class PostController extends Controller
         //dd($request['title']);
       
         $validatedData = $request->validate([
-            
+            'image' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
             'category_id' => 'required|integer',
             'extract' => 'required|max:500',
             'title' => 'required|max:255',
             'body' => 'required|max:1000',
         ]);
 
+        $path = $request->file('image')->store('public/images');
         $p1 = new Post;
         $p1->user_id = Auth::id();
+        $p1->image = $path;
         $p1->category_id = $validatedData['category_id'] ;
         $p1->extract= $validatedData['extract'] ;
         $p1->title = $validatedData['title'];
         $p1->body = $validatedData['body'];
         $p1->save();
 
+        $filename = $request->image;
+        $request->image->storeAs('images',$filename,'public');
+
+
         session()->flash('message', 'Post was created.');
 
         return redirect()->route('posts.index');
     }
+    
 
     /**
      * Display the specified resource.
@@ -119,6 +126,15 @@ class PostController extends Controller
             'title' => $request->title,
             'body' => $request->body
         ]);
+        
+        if($request->hasFile('image')){
+            $request->validate([
+              'image' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
+            ]);
+            $path = $request->file('image')->store('public/images');
+            $post->image = $path;
+        }
+        $post->save();
 
         return redirect()->route('posts.show', ['post' => $post])->with('message', 'Post has been updated');
     }
