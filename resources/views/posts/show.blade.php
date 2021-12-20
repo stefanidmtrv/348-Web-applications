@@ -9,8 +9,17 @@
         <div class="container my-3"> 
             <a class="btn btn-outline-secondary" href="{{ route('posts.index') }}">Go Back</a> 
             <br>
+
             <strong>Category:</strong> {{ $post->category->name }}
             <hr>
+            
+            <strong>Tags: </strong>
+            <ul>
+            @foreach($post->tags()->get() as $tag)
+             <li>  <a href="{{route('tags.show', ['tag' => $tag] )}}">  {{$tag->name}} </a></li>
+            @endforeach
+            </ul>
+            
 
             <img src="{{ Storage::url($post->image) }}" class="img-thumbnail" alt="" />
 

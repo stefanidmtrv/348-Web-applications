@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\TagController;
 
 use Illuminate\Support\Facades\Route;
 
@@ -31,14 +32,16 @@ Route::post('/posts', [PostController::class, 'store'])->name('posts.store')->mi
 Route::delete('posts/{post}', [PostController::class, 'destroy'])->name('posts.destroy')->middleware('auth');
 Route::get('/posts/{post}/edit', [PostController::class, 'edit'])->name('posts.edit');
 Route::put('/posts/{post}', [PostController::class, 'update'])->name('posts.update');
-//Route::get('/posts/{post}/edit', [PostController::class, 'edit'])->name('posts.edit')->middleware('auth');
-//Route::put('/posts/{post}', [PostController::class, 'update'])->name('posts.update')->middleware('auth');
+
 
 //comments
 Route::post('/posts/comments', [CommentController::class, 'store'])->name('comments.store')->middleware('auth');
 Route::delete('/posts/comments/{comment}', [CommentController::class, 'destroy'])->name('comments.destroy')->middleware('auth');
 Route::get('/posts/comments/{comment}/edit', [CommentController::class, 'edit'])->name('comments.edit');
 Route::put('/posts/comments/{comment}', [CommentController::class, 'update'])->name('comments.update');
+
+//tags
+Route::get('/posts/tags/{tag}', [TagController::class, 'show'])->name('tags.show')->middleware('auth');
 
 
 Route::get('/dashboard', function () {

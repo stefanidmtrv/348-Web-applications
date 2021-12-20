@@ -92,9 +92,7 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        //$post = Post::findOrFail($id);
-        //dd($post);
-        //dump($post);
+        
         return view('posts.show', ['post' => $post]);
     }
 

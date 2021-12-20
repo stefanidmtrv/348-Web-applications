@@ -38,7 +38,7 @@
             <a class="nav-link" href="#">Admin</a>
           
           </li>
-            @endrole
+        @endrole
             
             <form method="POST" action="{{ route('logout') }}">
               @csrf
