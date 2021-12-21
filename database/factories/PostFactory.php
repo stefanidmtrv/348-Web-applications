@@ -21,14 +21,14 @@ class PostFactory extends Factory
      */
     public function definition()
     {
-        $filePath = storage_path('app/public/images');
+        //$filePath = storage_path('app/public/images');
         return [
             'user_id' => $this->faker->randomDigitNotNull(),
             'category_id' => $this->faker->randomDigitNotNull(),
-            'image' => 'https://www.kindpng.com/picc/m/42-427622_cat-png-transparent-png.png',
+            //'image' => 'https://www.kindpng.com/picc/m/42-427622_cat-png-transparent-png.png',
             'title' => $this->faker->sentence(),
-            'extract' => $this->faker->paragraph(),
-            'body' => $this->faker->paragraph()
+            'extract' => $this->faker->realText($maxNbChars = 100, $indexSize = 2),
+            'body' => $this->faker->realText($maxNbChars = 200, $indexSize = 2)
         ];
     }
 }

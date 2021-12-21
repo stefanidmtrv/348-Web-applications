@@ -7,15 +7,12 @@
 
     <x-slot name="slot">
         <div class="card">
-            
+
             <div class="card-body">
                 <form method='POST' action="{{ route('posts.store') }}" enctype="multipart/form-data">
                     @csrf
-                    
-                    <div class="form-group">
-                        <strong>Post Image:</strong>
-                         <input type="file" name="image" class="form-control" placeholder="Post Title">
-                    </div>
+
+
 
                     <div class="form-group mb-4">
                         <p>Title: </p>
@@ -33,22 +30,26 @@
                     </select>
 
                     <div class="form-group mb-4">
+                        <strong> <p> Image:</p> </strong>
+                        <input type="file" name="image" class="form-control" placeholder="Image">
+                    </div>
+                    <div class="form-group mb-4">
                         <p>Extract: </p>
                         <textarea type="text" name="extract" value="{{ old('extract') }}"
                             class="form-control"></textarea>
                     </div>
 
-                    
+
 
                     <div class="form-group mb-4">
                         <p>Body: </p>
                         <textarea type="text" name="body" value="{{ old('body') }}" class="form-control"></textarea>
                     </div>
-                    
+
                     <div class="col-md-12 text-center">
-                    <button type="submit" class="btn btn-success" value="Submit">Submit</button>
-          
-                    <a href="{{ route('posts.index') }}">Cancel</a>
+                        <button type="submit" class="btn btn-success" value="Submit">Submit</button>
+
+                        <a href="{{ route('posts.index') }}">Cancel</a>
                     </div>
                 </form>
             </div>

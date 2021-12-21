@@ -31,6 +31,9 @@
                     </button>
                     </div>
 
+                    <p class="text-center text-muted mt-5 mb-0">Don't have an account? <a href="{{ route('register') }}" class="fw-bold text-body"><u>Sign up</u></a></p>
+
+
                   </form>
     
                 </div>

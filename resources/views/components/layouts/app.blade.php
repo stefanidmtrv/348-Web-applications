@@ -26,7 +26,7 @@
 
         @if ($errors->any())
         <div>
-            Errors:
+            Messages:
             <ul>
                 @foreach ($errors->all() as $error)
                 <li>{{$error}}</li>

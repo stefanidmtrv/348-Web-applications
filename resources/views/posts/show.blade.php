@@ -20,8 +20,9 @@
             @endforeach
             </ul>
             
-
-            <img src="{{ Storage::url($post->image) }}" class="img-thumbnail" alt="" />
+            <div class="text-center">
+            <img src="{{ Storage::url($post->image) }}" class="img-thumbnail center" height="auto" width="30%" alt="" />
+            </div>
 
             <p class="fs-2"><strong> {{$post->body}} </strong></p>
 
