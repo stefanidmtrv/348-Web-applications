@@ -27,7 +27,7 @@
                         @endforeach
                     </select>
 
-                    <strong>Image:</strong>
+                   Image:
                  <input type="file" name="image" class="form-control" placeholder="Post Title">
               <img src="{{ Storage::url($post->image) }}" height="200" width="200" alt="" />
 

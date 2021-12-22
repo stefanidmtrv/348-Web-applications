@@ -30,7 +30,7 @@
                     </select>
 
                     <div class="form-group mb-4">
-                        <strong> <p> Image:</p> </strong>
+                         <p> Image:</p> 
                         <input type="file" name="image" class="form-control" placeholder="Image">
                     </div>
                     <div class="form-group mb-4">
